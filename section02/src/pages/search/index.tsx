@@ -1,4 +1,6 @@
+import SearchableLayout from "@/components/searchable-layout";
 import { useRouter } from "next/router";
+import { ReactNode } from "react";
 // next/navigation은 App Router에 쓸 것
 
 export default function Page() {
@@ -12,3 +14,7 @@ export default function Page() {
 
   return <h1>Search {q}</h1>;
 }
+
+Page.getLayout = (page: ReactNode) => {
+  return <SearchableLayout>{page}</SearchableLayout>;
+};
