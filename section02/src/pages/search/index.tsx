@@ -1,27 +1,44 @@
 import SearchableLayout from "@/components/searchable-layout";
 import { useRouter } from "next/router";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import BookItem from "@/components/book-items";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetStaticPropsContext } from "next";
 import fetchBooks from "@/lib/fetch-books";
+import { BookData } from "@/types";
 // next/navigation은 App Router에 쓸 것
 
-// 이 함수를 썼기 때문에, SSR 방식으로 작동하게 됨
-// context : 현재 브라우저로부터 받은 요청에 대한 모든 정보가 다 포함
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const q = context.query.q;
-  const books = await fetchBooks(q as string);
+// export const getStaticProps = async (context: GetStaticPropsContext) => {
+//   /*
+//   const q = context.query.q; // Property 'query' does not exist on type 'GetStaticPropsContext'.ts(2339)
+//   // getStaticProps 함수에게 전달되는 컨텍스트라는 매개변수에는 쿼리 프로퍼티가 존재하지 않음
+//   // 왜냐면, getStaticProps는 빌드 타임에 딱 한 번만 실행,
+//   // 근데 빌드 타임엔 쿼리 스트링을 알 수 없음
+//   const books = await fetchBooks(q as string);
 
-  return {
-    props: { books },
+//   return {
+//     props: { books },
+//   };*/
+// };
+
+export default function Page() {
+  const [books, setBooks] = useState<BookData[]>([]);
+  // 리액트에서 했던 방식
+  const router = useRouter();
+  const q = router.query.q; // 쿼리스트링을 꺼내오기
+
+  // 검색 결과 불러오기
+  const fetchSearchResult = async () => {
+    const data = await fetchBooks(q as string);
+    setBooks(data);
   };
-};
 
-export default function Page({
-  books,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  useEffect(() => {
+    if (q) {
+      // 검색 결과를 불러오는 로직
+      fetchSearchResult();
+    }
+  }, [q]); // 검색어가 있다면
+
   return (
     <div>
       {books.map((book) => (
