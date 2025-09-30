@@ -2,6 +2,7 @@ import type { BookData } from "@/types";
 import Link from "next/link";
 import style from "./book-item.module.css";
 
+/* 하나의 도서 아이템 렌더링 */
 export default function BookItem({
   id,
   title,
