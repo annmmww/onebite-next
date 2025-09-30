@@ -13,6 +13,7 @@ export default function Searchbar() {
     setSearch(e.target.value);
   };
 
+  // 검색 버튼 클릭
   const onSubmit = () => {
     router.push(`/search?q=${search}`);
   };
