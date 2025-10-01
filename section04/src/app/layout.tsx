@@ -1,6 +1,26 @@
 import "./globals.css";
 import Link from "next/link";
 import style from "./layout.module.css";
+import { BookData } from "@/types";
+
+async function Footer() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`
+  );
+  if (!response.ok) {
+    return <footer>제작 @winterlood</footer>;
+  }
+
+  const books: BookData[] = await response.json();
+  const bookCount = books.length;
+
+  return (
+    <footer>
+      <div>제작 @winterlood</div>
+      <div>{bookCount}개의 도서가 등록되어 있습니다.</div>
+    </footer>
+  );
+}
 
 // 폰트나 메타 데이터는 불필요하니까 제거
 export default function RootLayout({
@@ -19,7 +39,7 @@ export default function RootLayout({
           {/* 메인 */}
           <main>{children}</main>
           {/* 푸터 */}
-          <footer>제작 @winterlood</footer>
+          <Footer />
         </div>
       </body>
     </html>
