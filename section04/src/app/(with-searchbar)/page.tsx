@@ -1,12 +1,11 @@
 import BookItem from "@/components/book-item";
 import style from "./page.module.css";
-import books from "@/mock/books.json";
 import { BookData } from "@/types";
 
 async function AllBooks() {
-  // const response = await fetch(`http://localhost:12345/book`);
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
+    { cache: "no-store" }
   );
   // 에러처리
   if (!response.ok) {
@@ -14,7 +13,6 @@ async function AllBooks() {
   }
 
   const allBooks: BookData[] = await response.json(); // 타입을 미리 지정 -> map 메서드에서 타입 오류 해결
-  // console.log(allBooks);
 
   return (
     <div>
@@ -27,10 +25,15 @@ async function AllBooks() {
 }
 
 async function RecoBooks() {
-  // const response = await fetch(`http://localhost:12345/book/random`);
+  // const response = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`,
+  //   { cache: "force-cache" }
+  // );
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`,
+    { next: { revalidate: 3 } }
   );
+
   if (!response.ok) {
     return <div>오류가 발생했습니다 ...</div>;
   }
