@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.movieList {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.movieList > * {
+  flex: 0 0 180px;
+}
+
+.movieList::-webkit-scrollbar {
+  display: none;
+}
