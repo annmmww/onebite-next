@@ -1,7 +1,7 @@
 import { MovieType } from "@/type";
 
 export default async function fetchMovie(q?: string): Promise<MovieType[]> {
-  let url = `http://challenge-onebite-cinema-server-mai-coral.vercel.app/movie`;
+  let url = `https://challenge-onebite-cinema-server-mai-coral.vercel.app/movie`;
 
   if (q) {
     url += `/search?q=${q}`;
