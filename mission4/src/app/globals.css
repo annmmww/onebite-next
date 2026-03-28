@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
