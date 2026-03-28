@@ -26,7 +26,6 @@ export async function deleteReviewAction(_: any, formDate: FormData) {
     }
 
     revalidateTag(`review-${movieId}`);
-    console.log("revalidateTag");
     return {
       status: true,
       error: "",

@@ -17,7 +17,7 @@ export default function Searchbar() {
   };
 
   return (
-    <form className="flex gap-2 w-full" onSubmit={onSubmit}>
+    <form className="flex gap-2 w-full mt-4" onSubmit={onSubmit}>
       <input
         className="basis-6/7 border-gray-200 border-2 rounded-md p-2"
         type="text"

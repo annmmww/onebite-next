@@ -30,10 +30,10 @@ export default async function Page({
   const { id } = await params;
 
   return (
-    <main className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 mt-4">
       <BookDetail id={id} />
       <ReviewEditor movieId={id} />
       <ReviewList movieId={id} />
-    </main>
+    </div>
   );
 }

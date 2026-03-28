@@ -9,11 +9,11 @@ export default async function Page({
 }) {
   const { q } = await searchParams;
   return (
-    <main className="flex flex-col">
+    <div className="flex flex-col">
       <h3 className="font-bold text-xl">검색 결과</h3>
       <Suspense key={q || ""} fallback={<MovieListSkeleton />}>
         <SearchResult q={q || ""} />
       </Suspense>
-    </main>
+    </div>
   );
 }

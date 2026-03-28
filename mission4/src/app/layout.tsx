@@ -20,8 +20,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html
@@ -29,12 +31,16 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col gap-4">
-        <header className="mt-4">
-          <Link href={"/"}>
-            <h1 className="font-bold text-2xl">🎬 ONEBITE MOVIE</h1>
-          </Link>
-        </header>
-        {children}
+        <div>
+          <header className="mt-4">
+            <Link href={"/"}>
+              <h1 className="font-bold text-2xl">🎬 ONEBITE MOVIE</h1>
+            </Link>
+          </header>
+          <main>{children}</main>
+        </div>
+        {modal}
+        <div id="modal-root"></div>
       </body>
     </html>
   );
