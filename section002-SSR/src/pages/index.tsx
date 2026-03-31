@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import style from "./index.module.css";
 import SearchableLayout from "@/components/searchable-layout";
-import books from "@/mock/books.json";
 import BookItem from "@/components/book-item";
 import fetchBooks from "@/lib/fetch-books";
 import { InferGetServerSidePropsType } from "next";
