@@ -1,5 +1,4 @@
 import SearchableLayout from "@/components/searchable-layout";
-import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import BookItem from "@/components/book-item";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
